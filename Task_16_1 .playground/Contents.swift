@@ -56,7 +56,7 @@ var peopleArr = [someHuman, fighter, manager, fighter]
 class Police: People {
     var experienceInYears = 10
 }
-var police = Police(name: "Frenk", growth: 1.79, weight: 64, gender: "M")
+var police = Police(name: "Hank", growth: 1.79, weight: 64, gender: "M")
 
 peopleArr.append(police)
 
@@ -73,3 +73,77 @@ for human in peopleArr.reversed() {
     human.printData()
     print("\n")
 }
+
+/*
+ * Task 16_2
+ */
+
+import UIKit
+
+class Marsian {
+    var name:String
+    var age:Int
+    var gender:String
+    var cityName: String
+    
+    init(name: String, age: Int, gender: String, cityName: String) {
+        self.name = name
+        self.age = age
+        self.gender = gender
+        self.cityName = cityName
+    }
+    func say(){
+        print("Hello, I'm \(name), my age is \(age), and I'm \(gender). \n\(name) from \(cityName)")
+    }
+}
+
+class MarsianPolice: Marsian {
+    override
+    func say () {
+        print("Hello, I'm \(name), my age is \(age), and I'm \(gender). \n\(name) from \(cityName) and I'm police")
+    }
+}
+
+
+class MarsianProgrammer: Marsian {
+    override
+    func say () {
+        print("Hello, I'm \(name), my age is \(age), and I'm \(gender). \n\(name) from \(cityName) and I'm programmer")
+    }
+}
+
+var someMarsianin = Marsian(name: "Mark", age: 518, gender: "man", cityName: "Marsiopolis")
+var policeMarsianin = MarsianPolice(name: "Jorge", age: 150, gender: "man", cityName: "Marsiopolis")
+var programmerMarsianin = MarsianProgrammer(name: "Lia", age: 88, gender: "woman", cityName: "Marsiopolis")
+var marsianinArr = [someMarsianin,policeMarsianin,programmerMarsianin]
+var interplanetaryArr = [someHuman, cook, manager, fighter, someMarsianin, policeMarsianin, programmerMarsianin] as [AnyObject]
+
+for index in interplanetaryArr {
+    if index is Marsian {
+        print("Marsianin")
+    }else{
+        print("People")
+    }
+}
+
+print()
+
+var countArr = (marsianinArr.count > peopleArr.count) ? marsianinArr.count : peopleArr.count
+for index in 0...countArr-1 {
+    if marsianinArr.indices.contains(index) {
+        print("\(marsianinArr[index].name) - marsianin")
+    }else {
+        print("no objects")
+    }
+    
+    if peopleArr.indices.contains(index) {
+        print("\(peopleArr[index].name) - people")
+    }else {
+        print("no objects")
+    }
+}
+
+
+
+
+
