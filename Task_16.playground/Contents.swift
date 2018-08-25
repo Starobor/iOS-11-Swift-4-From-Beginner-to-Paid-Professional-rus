@@ -116,7 +116,7 @@ var someMarsianin = Marsian(name: "Mark", age: 518, gender: "man", cityName: "Ma
 var policeMarsianin = MarsianPolice(name: "Jorge", age: 150, gender: "man", cityName: "Marsiopolis")
 var programmerMarsianin = MarsianProgrammer(name: "Lia", age: 88, gender: "woman", cityName: "Marsiopolis")
 var marsianinArr = [someMarsianin,policeMarsianin,programmerMarsianin]
-var interplanetaryArr = [someHuman, cook, manager, fighter, someMarsianin, policeMarsianin, programmerMarsianin] as [AnyObject]
+var interplanetaryArr = [policeMarsianin, cook, manager, fighter, someMarsianin, someHuman, programmerMarsianin] as [AnyObject]
 
 for index in interplanetaryArr {
     if index is Marsian {
@@ -142,8 +142,34 @@ for index in 0...countArr-1 {
         print("no objects")
     }
 }
+print()
 
+interplanetaryArr = interplanetaryArr.sorted(by: {(being1: AnyObject, beiing2: AnyObject) -> Bool in
+    if ((being1 as? People) != nil) {
+        return true
+    } else {
+        return false
+    }
+})
 
+interplanetaryArr = interplanetaryArr.sorted(by: {(being1: AnyObject, being2: AnyObject) -> Bool in
+    let objPeople1 = being1 as? People
+    let objPeople2 = being2 as? People
+    let objMars1 = being1 as? Marsian
+    let objMars2 = being2 as? Marsian
+    
+    if objPeople1 != nil && objPeople2 != nil {
+        return (objPeople1?.name)! < (objPeople2?.name)!
+    } else if objMars1 != nil && objMars2 != nil {
+        return (objMars1?.name)! < (objMars2?.name)!
+    }
+    return false
+})
 
-
-
+for index in interplanetaryArr {
+    if let obj = index as? People {
+        print("\(obj.name) - p")
+    }else if let obj = index as? Marsian{
+        print("\(obj.name) - m")
+    }
+}
